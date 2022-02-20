@@ -26,6 +26,7 @@ const Avatar = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 11rem;
+  cursor: pointer;
 `;
 
 const AvatarText = styled.h4`
