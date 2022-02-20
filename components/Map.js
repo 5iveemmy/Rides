@@ -72,13 +72,7 @@ const Map = ({ ride, user }) => {
       <MapWrap>
         <OnLeft>
           <ForImage>
-            <Image
-              src="/map.jpg"
-              width={296}
-              height={148}
-              alt="Map"
-              objectFit="cover"
-            />
+            <Image src="/map.jpg" width={296} height={148} alt="Map" />
           </ForImage>
           <Location>
             <Details>
