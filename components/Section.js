@@ -1,30 +1,41 @@
 import styled from "styled-components";
 import { Container } from "../style/global";
 import { BsFilterLeft } from "react-icons/bs";
+import { IoMdArrowDropdown } from "react-icons/io";
 import Map from "./Map";
+import { useState } from "react";
 
 const SectWrap = styled.div`
   background: #292929;
 `;
 
+const Pad = styled.div`
+  padding-bottom: 50px;
+`;
+
 const Sect = styled.div`
   display: flex;
   justify-content: space-between;
+  /* color: #d0cbcb; */
   padding: 2rem 0px;
+  font-size: 18px;
 `;
 
 const Left = styled.ul`
   display: flex;
   justify-content: space-between;
   width: 30rem;
+  font-size: 18px;
 `;
 
 const LeftList = styled.li`
+  color: ${({ boldColor }) => (boldColor ? "#fff" : "#d0cbcb")};
+  border-bottom: ${({ under }) => (under ? "solid 2px" : "none")};
   list-style: none;
   cursor: pointer;
 
   &:hover {
-    color: #c5c5c5;
+    color: #fff;
     transition: ease-in-out 0.4s;
   }
 `;
@@ -42,6 +53,8 @@ const RightIcon = styled.div``;
 const RightText = styled.p`
   padding-bottom: 6px;
 `;
+
+const Arrow = styled.div``;
 
 const rides = [
   {
@@ -76,53 +89,119 @@ const rides = [
   },
 ];
 
+const ShowFilter = styled.div`
+  position: absolute;
+  display: ${({ isOpen }) => (isOpen ? "block" : "none")};
+  background-color: #101010;
+  padding: 20px;
+  border-radius: 10px;
+  right: 1rem;
+  top: 10rem;
+`;
+
+const ShowFilterWrap = styled.div`
+  padding: 10px;
+  width: 11rem;
+`;
+
+const FiltersDiv = styled.div`
+  padding-bottom: 10px;
+`;
+
+const Filters = styled.p`
+  border-bottom: 1px solid #fff;
+  padding-bottom: 5px;
+  text-align: center;
+`;
+
+const FiltersTextWrap = styled.div`
+  background-color: #232323;
+  padding: 10px;
+  margin-bottom: 10px;
+`;
+
+const FiltersText = styled.p`
+  font-size: 17px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+`;
+
 const Section = () => {
-  const [filter, SetFilter] = useState(false);
+  const [click, setClick] = useState(false);
 
   const filterClick = () => {
-    SetFilter(!filter);
+    setClick(!click);
   };
+
   return (
     <SectWrap>
-      <Container>
-        <Sect>
-          <Left>
-            <LeftList>Nearest rides</LeftList>
-            <LeftList>Upcoming rides(4)</LeftList>
-            <LeftList>Past rides(2)</LeftList>
-          </Left>
-          <Right onClick={filterClick}>
-            <RightIcon>
-              <BsFilterLeft size={25} />
-            </RightIcon>{" "}
-            <RightText>Filter</RightText>
-          </Right>
-        </Sect>
-        {rides.map(
-          ({
-            id,
-            origin_station_code,
-            station_path,
-            destination_station_code,
-            date,
-            map_url,
-            state,
-            city,
-          }) => (
-            // eslint-disable-next-line react/jsx-key
-            <Map
-              id={id}
-              origin_station_code={origin_station_code}
-              station_path={station_path}
-              destination_station_code={destination_station_code}
-              date={date}
-              map_url={map_url}
-              state={state}
-              city={city}
-            />
-          )
-        )}
-      </Container>
+      <Pad>
+        <Container>
+          <Sect>
+            <Left>
+              <LeftList boldColor under>
+                Nearest rides
+              </LeftList>
+              <LeftList>Upcoming rides(4)</LeftList>
+              <LeftList>Past rides(2)</LeftList>
+            </Left>
+            <Right onClick={filterClick}>
+              <RightIcon>
+                <BsFilterLeft size={25} />
+              </RightIcon>{" "}
+              <RightText>Filter</RightText>
+            </Right>
+            <ShowFilter isOpen={click}>
+              <ShowFilterWrap>
+                <FiltersDiv>
+                  <Filters>Filters </Filters>
+                </FiltersDiv>
+                <FiltersTextWrap>
+                  <FiltersText>
+                    State{" "}
+                    <Arrow>
+                      <IoMdArrowDropdown />
+                    </Arrow>
+                  </FiltersText>
+                </FiltersTextWrap>
+                <FiltersTextWrap>
+                  <FiltersText>
+                    City
+                    <Arrow>
+                      <IoMdArrowDropdown />
+                    </Arrow>
+                  </FiltersText>
+                </FiltersTextWrap>
+              </ShowFilterWrap>
+            </ShowFilter>
+          </Sect>
+          {rides.map(
+            ({
+              id,
+              origin_station_code,
+              station_path,
+              destination_station_code,
+              date,
+              map_url,
+              state,
+              city,
+            }) => (
+              // eslint-disable-next-line react/jsx-key
+              <Map
+                id={id}
+                origin_station_code={origin_station_code}
+                station_path={station_path}
+                destination_station_code={destination_station_code}
+                date={date}
+                map_url={map_url}
+                state={state}
+                city={city}
+              />
+            )
+          )}
+        </Container>
+      </Pad>
     </SectWrap>
   );
 };

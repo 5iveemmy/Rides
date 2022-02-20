@@ -15,12 +15,17 @@ const MapWrap = styled.div`
   justify-content: space-between;
 `;
 
-const ForImage = styled.div``;
+const ForImage = styled.div`
+  display: flex;
+  & img {
+    border-radius: 5px;
+  }
+`;
 
 const OnLeft = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 40rem;
+  width: 37rem;
 `;
 
 const OnRight = styled.div`
@@ -35,7 +40,6 @@ const ForSpan = styled.div`
   height: fit-content;
   border-radius: 16px;
   cursor: pointer;
-
   &:hover {
     background-color: rgba(0, 0, 0, 0.2);
     transition: ease-in-out 0.5s;
@@ -77,7 +81,7 @@ const Map = ({
               width={296}
               height={148}
               alt="Map"
-              objectFit="fill"
+              objectFit="cover"
             />
           </ForImage>
           <Location>

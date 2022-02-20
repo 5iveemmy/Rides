@@ -16,7 +16,10 @@ const ForTop = styled.div`
 
 const Edv = styled.div``;
 
-const EdvText = styled.h1``;
+const EdvText = styled.h1`
+  font-size: 36px;
+  font-weight: 700;
+`;
 
 const Avatar = styled.div`
   display: flex;
@@ -25,7 +28,9 @@ const Avatar = styled.div`
   width: 11rem;
 `;
 
-const AvatarText = styled.h4``;
+const AvatarText = styled.h4`
+  font-size: 20px;
+`;
 
 const Top = () => {
   return (
