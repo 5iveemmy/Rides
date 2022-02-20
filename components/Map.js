@@ -1,11 +1,12 @@
 import Image from "next/image";
 import styled from "styled-components";
 
-//Styled
+//Styled Components
 
 const MapContainer = styled.div`
   background: #171717;
   border-radius: 10px;
+  margin-bottom: 2rem;
 `;
 
 const MapWrap = styled.div`
