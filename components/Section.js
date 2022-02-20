@@ -77,6 +77,11 @@ const rides = [
 ];
 
 const Section = () => {
+  const [filter, SetFilter] = useState(false);
+
+  const filterClick = () => {
+    SetFilter(!filter);
+  };
   return (
     <SectWrap>
       <Container>
@@ -86,7 +91,7 @@ const Section = () => {
             <LeftList>Upcoming rides(4)</LeftList>
             <LeftList>Past rides(2)</LeftList>
           </Left>
-          <Right>
+          <Right onClick={filterClick}>
             <RightIcon>
               <BsFilterLeft size={25} />
             </RightIcon>{" "}
