@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 import styled from "styled-components";
 
 //Styled Components
@@ -61,16 +62,11 @@ const Span = styled.span`
 
 const Location = styled.div``;
 
-const Map = ({
-  id,
-  origin_station_code,
-  station_path,
-  destination_station_code,
-  date,
-  map_url,
-  state,
-  city,
-}) => {
+const Map = ({ ride, user }) => {
+  const { id, origin_station_code, station_path, date } = ride;
+  const distance =
+    station_path.filter((code) => code >= user.station_code)[0] -
+    user.station_code;
   return (
     <MapContainer>
       <MapWrap>
@@ -97,24 +93,12 @@ const Map = ({
               {station_path}
             </Details>
             <Details>
-              <DitSpan>Station_code:</DitSpan>
-              {destination_station_code}
-            </Details>
-            <Details>
               <DitSpan>Date:</DitSpan>
               {date}
             </Details>
             <Details>
-              <DitSpan>Url:</DitSpan>
-              {map_url}
-            </Details>
-            <Details>
-              <DitSpan>State:</DitSpan>
-              {state}
-            </Details>
-            <Details>
-              <DitSpan>City:</DitSpan>
-              {city}
+              <DitSpan>Distance:</DitSpan>
+              {distance}
             </Details>
           </Location>
         </OnLeft>

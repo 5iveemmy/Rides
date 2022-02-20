@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 import styled from "styled-components";
 import { Container } from "../style/global";
 
@@ -34,6 +35,12 @@ const AvatarText = styled.h4`
 `;
 
 const Top = () => {
+  const user = {
+    station_code: 40,
+    name: "Dhruv Singh",
+    profile_key: "url",
+  };
+
   return (
     <TopWrap>
       <Container>
@@ -42,7 +49,7 @@ const Top = () => {
             <EdvText>Edvora</EdvText>
           </Edv>
           <Avatar>
-            <AvatarText>Dhruv Singh</AvatarText>
+            <AvatarText>{user.name}</AvatarText>
             <Image src="/avi.png" alt="avatar" width={44} height={44} />
           </Avatar>
         </ForTop>

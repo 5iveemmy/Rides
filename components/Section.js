@@ -128,8 +128,12 @@ const FiltersText = styled.p`
 `;
 
 const Section = () => {
+  const [user] = useState({
+    station_code: 40,
+    name: "Dhruv Singh",
+    profile_key: "url",
+  });
   const [click, setClick] = useState(false);
-
   const filterClick = () => {
     setClick(!click);
   };
@@ -176,30 +180,9 @@ const Section = () => {
               </ShowFilterWrap>
             </ShowFilter>
           </Sect>
-          {rides.map(
-            ({
-              id,
-              origin_station_code,
-              station_path,
-              destination_station_code,
-              date,
-              map_url,
-              state,
-              city,
-            }) => (
-              // eslint-disable-next-line react/jsx-key
-              <Map
-                id={id}
-                origin_station_code={origin_station_code}
-                station_path={station_path}
-                destination_station_code={destination_station_code}
-                date={date}
-                map_url={map_url}
-                state={state}
-                city={city}
-              />
-            )
-          )}
+          {rides.map((ride) => (
+            <Map key={ride.id} ride={ride} user={user} />
+          ))}
         </Container>
       </Pad>
     </SectWrap>
