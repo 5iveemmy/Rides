@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { useState } from "react";
 import styled from "styled-components";
 import { Container } from "../style/global";
 
@@ -34,13 +33,7 @@ const AvatarText = styled.h4`
   font-size: 20px;
 `;
 
-const Top = () => {
-  const user = {
-    station_code: 40,
-    name: "Dhruv Singh",
-    profile_key: "url",
-  };
-
+const Top = ({ user }) => {
   return (
     <TopWrap>
       <Container>

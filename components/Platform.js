@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Section from "./Section";
-import Top from "./Top";
 
 // STyled components
 const Body = styled.div`
@@ -10,7 +9,6 @@ const Body = styled.div`
 const Platform = () => {
   return (
     <Body>
-      <Top />
       <Section />
     </Body>
   );
